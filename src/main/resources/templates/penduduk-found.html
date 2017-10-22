@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8"/>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		<link rel="stylesheet" href="../../css/searchbar.css"/>
+		
+		<title>Sistem Kependudukan DKI</title>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-inverse">
+ 			<div class="container-fluid">
+    			<div class="navbar-header">
+      				<a class="navbar-brand" href="/">SI Kependudukan</a>
+    			</div>
+    			<ul class="nav navbar-nav">
+      				<li><a href="/">Home</a></li>
+      				<li><a href="/penduduk/tambah">Tambah Penduduk</a></li>
+      				<li><a href="/keluarga/tambah">Tambah Keluarga</a></li>
+      				<li><a href="/penduduk/ubah">Ubah Data Penduduk</a></li>
+      				<li><a href="/keluarga/ubah">Ubah Data Keluarga</a></li>
+      				<li><a href="/penduduk/cari-form">Cari Penduduk Berdasarkan Lokasi</a></li>
+    			</ul>
+  			</div>
+		</nav>
+		
+		
+		
+		<div class="container-fluid text-center">
+		<div class="row content">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8 text-left">
+		<h2 th:text="'Lihat Data Penduduk - ' + ${nik}"></h2>
+		<table id="view-data" cellspacing="0" width="100%">
+		<tbody>
+			<tr>
+				<td><strong>NIK</strong></td>
+				<td th:text="${nik}"></td>
+			</tr>
+			<tr>
+				<td><strong>nama</strong></td>
+				<td th:text="${nama}"></td>
+			</tr>
+			<tr>
+				<td><strong>Jenis Kelamin</strong></td>
+				<td th:text="${jenis_kelamin}"></td>
+			</tr>
+			<tr>
+				<td><strong>Tempat/Tanggal Lahir</strong></td>
+				<td th:text="${tempat_lahir} + ' ' + ${tanggal_lahir}"></td>
+			</tr>
+			<tr>
+				<td><strong>Alamat</strong></td>
+				<td th:text="${alamat}"></td>
+			</tr>
+			<tr>
+				<td><strong>RT/RW</strong></td>
+				<td th:text="${rt} + '/' + ${rw}"></td>
+			</tr>
+			<tr>
+				<td><strong>Kelurahan/Desa</strong></td>
+				<td th:text="${nama_kelurahan}"></td>
+			</tr>
+			<tr>
+				<td><strong>Kecamatan</strong></td>
+				<td th:text="${nama_kecamatan}"></td>
+			</tr>
+			<tr>
+				<td><strong>Kota</strong></td>
+				<td th:text="${nama_kota}"></td>
+			</tr>
+			<tr>
+				<td><strong>Golongan Darah</strong></td>
+				<td th:text="${golongan_darah}"></td>
+			</tr>
+			<tr>
+				<td><strong>Agama</strong></td>
+				<td th:text="${agama}"></td>
+			</tr>
+			<tr>
+				<td><strong>Status Perkawinan</strong></td>
+				<td th:text="${status_perkawinan}"></td>
+			</tr>
+			<tr>
+				<td><strong>Kewarganegaraan</strong></td>
+				<td th:text="${is_wni}"></td>
+			</tr>
+			<tr>
+				<td><strong>Status Kematian</strong></td>
+				<td th:text="${is_wafat}"></td>
+				<td th:if="${is_wafat} == 'Hidup'">
+					<form action="/penduduk/mati" method="POST">
+					<input type="hidden" name="nik" th:value="${nik}"></input>
+					<button type="submit" class="btn btn-danger" name="action"
+					value="submit">Nonaktifkan</button>
+					</form> 
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		
+		<div th:if="${wafat} == 'berhasil'">
+			<h2 th:text="'Penduduk dengan NIK ' + ${nik} + ' sudah tidak aktif'"></h2>
+		</div>
+		
+		</div>
+		</div>
+		</div>
+	</body>
+
+</html>

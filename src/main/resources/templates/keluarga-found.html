@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8"/>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		<link rel="stylesheet" href="../../css/searchbar.css"/>
+		
+		<title>Sistem Kependudukan DKI</title>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-inverse">
+ 			<div class="container-fluid">
+    			<div class="navbar-header">
+      				<a class="navbar-brand" href="/">SI Kependudukan</a>
+    			</div>
+    			<ul class="nav navbar-nav">
+      				<li><a href="/">Home</a></li>
+      				<li><a href="/penduduk/tambah">Tambah Penduduk</a></li>
+      				<li><a href="/keluarga/tambah">Tambah Keluarga</a></li>
+      				<li><a href="/penduduk/ubah">Ubah Data Penduduk</a></li>
+      				<li><a href="/keluarga/ubah">Ubah Data Keluarga</a></li>
+      				<li><a href="/penduduk/cari-form">Cari Penduduk Berdasarkan Lokasi</a></li>
+    			</ul>
+  			</div>
+		</nav>
+		
+		
+		<div class="container-fluid text-center">
+		<div class="row content">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8 text-left">
+		
+		<h2 th:text="'Lihat Data Keluarga - ' + ${nkk}"></h2>
+		
+		<table id="view-data" cellspacing="0" width="100%">
+		<tbody>
+			<tr>
+				<td><strong>NKK</strong></td>
+				<td th:text="${nkk}"></td>
+			</tr>
+			<tr>
+				<td><strong>Alamat</strong></td>
+				<td th:text="${alamat}"></td>
+			</tr>
+			<tr>
+				<td><strong>RT/RW</strong></td>
+				<td th:text="${rt} + '/' + ${rw}"></td>
+			</tr>
+			<tr>
+				<td><strong>Kelurahan/Desa</strong></td>
+				<td th:text="${nama_kelurahan}"></td>
+			</tr>
+			<tr>
+				<td><strong>Kecamatan</strong></td>
+				<td th:text="${nama_kecamatan}"></td>
+			</tr>
+			<tr>
+				<td><strong>Kota</strong></td>
+				<td th:text="${nama_kota}"></td>
+			</tr>
+		</tbody>
+		</table>
+		
+		</div>
+		</div>
+		</div>
+		
+		<hr></hr>
+	
+			<div class="container">   
+  					<table class="table table-bordered">
+    				<thead>
+					   <tr>
+					     <th>No.</th>
+					     <th>Nama Lengkap</th>
+					     <th>NIK</th>
+					     <th>Jenis Kelamin</th>
+					     <th>Tempat Lahir</th>
+					     <th>Tanggal Lahir</th>
+					     <th>Agama</th>
+					     <th>Pekerjaan</th>
+					     <th>Status Perkawinan</th>
+					     <th>Status Dalam Keluarga</th>
+					     <th>Kewarganegaraan</th>
+					   </tr>
+    				</thead>
+    				<div th:each="daftarKeluarga, iterationStatus: ${daftarKeluarga}">
+				    <tbody>
+				      <tr>
+				        <td th:text="${iterationStatus.count}"></td>
+				        <td th:text="${daftarKeluarga.nama}"></td>
+				        <td th:text="${daftarKeluarga.nik}"></td>
+				        <td th:text="${daftarKeluarga.jenis_kelamin} == 0 ? 'Pria' : 'Wanita'"></td>
+				        <td th:text="${daftarKeluarga.tempat_lahir}"></td>
+				        <td th:text="${daftarKeluarga.tanggal_lahir}"></td>
+				        <td th:text="${daftarKeluarga.agama}"></td>
+				        <td th:text="${daftarKeluarga.pekerjaan}"></td>
+				        <td th:text="${daftarKeluarga.status_perkawinan}"></td>
+				        <td th:text="${daftarKeluarga.status_dalam_keluarga}"></td>
+				        <td th:text="${daftarKeluarga.is_wni} == 1 ? 'WNI' : 'WNA'"></td>
+				      </tr>
+				    </tbody>
+				    </div>
+				  </table>
+			</div>
+	</body>
+
+</html>

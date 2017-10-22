@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8"/>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		<link rel="stylesheet" href="../../css/searchbar.css"/>
+		
+		<title>Sistem Kependudukan DKI</title>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-inverse">
+ 			<div class="container-fluid">
+    			<div class="navbar-header">
+      				<a class="navbar-brand" href="/">SI Kependudukan</a>
+    			</div>
+    			<ul class="nav navbar-nav">
+      				<li><a href="/">Home</a></li>
+      				<li><a href="/penduduk/tambah">Tambah Penduduk</a></li>
+      				<li><a href="/keluarga/tambah">Tambah Keluarga</a></li>
+      				<li><a href="/penduduk/ubah">Ubah Data Penduduk</a></li>
+      				<li><a href="/keluarga/ubah">Ubah Data Keluarga</a></li>
+      				<li><a href="/penduduk/cari-form">Cari Penduduk Berdasarkan Lokasi</a></li>
+    			</ul>
+  			</div>
+		</nav>
+		
+		<div class="col-sm-8 text-left">
+		<h1 class="page-header">Ubah Data Keluarga</h1>
+		<form th:object="${keluarga}" action="/keluarga/ubah" method="POST">
+			<div class="form-group">
+				<label for="nomor_kk">NKK</label>
+				<input type="text" class="form-control" id="nomor_kk" name="nomor_kk" readonly="true"
+				th:field="*{nomor_kk}" th:value="${keluarga.nomor_kk}"/>
+			</div>
+			<div class="form-group">
+				<label for="alamat">Alamat</label>
+				<input type="text" class="form-control" id="alamat" name="alamat"
+				th:field="*{alamat}" th:value="${keluarga.alamat}"/>
+			</div>
+			<div class="form-group">
+				<label for="rt">RT</label>
+				<input type="text" class="form-control" id="rt" name="rt"
+				th:field="*{rt}" th:value="${keluarga.rt}"/>
+			</div>
+			<div class="form-group">
+				<label for="rw">RW</label>
+				<input type="text" class="form-control" id="rw" name="rw"
+			    th:field="*{rw}" th:value="${keluarga.rw}"/>
+			</div>
+			<div class="form-group">
+				<label for="nama_kelurahan">Kelurahan/Desa</label>
+				<input type="text" class="form-control" id="nama_kelurahan" name="nama_kelurahan"
+				th:field="*{nama_kelurahan}" th:value="${keluarga.nama_kelurahan}"/>
+			</div>
+			<div class="form-group">
+				<label for="nama_kecamatan">Kecamatan</label>
+				<input type="text" class="form-control" id="nama_kecamatan" name="nama_kecamatan"
+				th:field="*{nama_kecamatan}" th:value="${keluarga.nama_kecamatan}"/>
+			</div>
+			<div class="form-group">
+				<label for="nama_kota">Kota</label>
+				<input type="text" class="form-control" id="nama_kota" name="nama_kota"
+				th:field="*{nama_kota}" th:value="${keluarga.nama_kota}"/>
+			</div>
+			
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+		
+		
+	</body>
+
+</html>
